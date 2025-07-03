@@ -93,7 +93,7 @@ const generateAndSendOtp = async (email) => {
   
           <footer style="text-align: center; font-size: 12px; color: #555;">
             &copy; 2025 ACPCE Alumni. All rights reserved.<br/>
-            A. C. Patil College Of Engineering, Kharghar, Navi Mumbai.
+            ACPCE Alumni, Kharghar, Navi Mumbai
           </footer>
         </div>
       </div>
