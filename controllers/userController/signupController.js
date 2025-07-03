@@ -92,7 +92,7 @@ const generateAndSendOtp = async (email) => {
           <hr style="border: none; border-top: 1px solid #333; margin: 40px 0;" />
   
           <footer style="text-align: center; font-size: 12px; color: #555;">
-            &copy; ${year} ACPCE Alumni. All rights reserved.<br/>
+            &copy; 2025 ACPCE Alumni. All rights reserved.<br/>
             A. C. Patil College Of Engineering, Kharghar, Navi Mumbai.
           </footer>
         </div>
