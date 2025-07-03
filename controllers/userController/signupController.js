@@ -51,7 +51,7 @@ const generateAndSendOtp = async (email) => {
         <div style="max-width: 600px; margin: auto; background-color: #111; border-radius: 8px; padding: 30px;">
           
           <div style="text-align: center; margin-bottom: 30px;">
-            <img src="https://ik.imagekit.io/hlivau4qk6/Certificates/Divine%20DevOps%20LOGO.png?updatedAt=1748940956904"
+            <img src="https://ik.imagekit.io/hlivau4qk6/Certificates/acpce.png?updatedAt=1751538818727"
                  alt="ACPCE Alumni Logo"
                  style="width: 120px; border-radius: 8px;" />
           </div>
