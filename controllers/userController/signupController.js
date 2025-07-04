@@ -63,11 +63,11 @@ const generateAndSendOtp = async (email) => {
     const html = `
       <div style="font-family: Arial,sans-serif; max-width:600px; margin:0 auto; padding:20px; background:#f9f9f9; border-radius:8px;">
         <div style="text-align:center; margin-bottom:20px;">
-          <img src="https://i.imgur.com/7FjkA5D.png" alt="AlmaMatter Logo" style="width:150px;"/>
+          <img src="https://ik.imagekit.io/hlivau4qk6/Certificates/acpce.png?updatedAt=1751538818727" alt="ACPCE Logo" style="width:150px;"/>
         </div>
         <h2 style="color:#333;">Dear User,</h2>
         <p style="color:#555; line-height:1.6;">
-          Thank you for choosing <strong>AlmaMatter</strong>! Your OTP is:
+          Thank you for choosing <strong>ACPCE Alumni Association</strong>! Your OTP is:
         </p>
         <div style="text-align:center; margin:20px 0;">
           <span style="display:inline-block; background:#fff; color:#1a73e8; font-size:24px; padding:10px 20px; border-radius:5px;">
@@ -81,20 +81,20 @@ const generateAndSendOtp = async (email) => {
           If you did not request this, please ignore.
         </p>
         <p style="margin-top:30px; color:#333;">
-          Regards,<br/>The AlmaMatter Team
+          Regards,<br/>The ACPCE Alumni Association Team
         </p>
         <hr style="border:none; border-top:1px solid #ddd; margin:30px 0;"/>
         <footer style="text-align:center; color:#777; font-size:12px;">
-          &copy; ${year} AlmaMatter. All rights reserved.<br/>IIIT Dharwad, Karnataka
+          &copy; ${year} ACPCE Alumni. All rights reserved.<br/> Kharghar, Navi Mumbai
         </footer>
       </div>
     `;
 
     // Send mail
     const info = await transporter.sendMail({
-      from: `"AlmaMatter" <${process.env.SENDER_EMAIL}>`,
+      from: `"ACPCE Alumni Association" <${process.env.SENDER_EMAIL}>`,
       to: email,
-      subject: "Your OTP for AlmaMatter Verification",
+      subject: "Your OTP for ACPCE Alumni Association Verification",
       html
     });
 
