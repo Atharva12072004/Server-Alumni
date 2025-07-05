@@ -12,6 +12,7 @@ const verify = async (req, res) => {
   if (!otpRecord) {
     return res.status(404).json({ msg: "OTP Expired or Wrong E-Mail." });
   }
+  console.log('OTP in DB:', otpRecord.otp, 'OTP Attempt:', otpAttempt);
   if (otpRecord.otp !== otpAttempt) {
     await otpModel.deleteOne({ email });
     return res.status(401).json({ msg: "Incorrect OTP." });
@@ -30,7 +31,8 @@ const verify = async (req, res) => {
   // 3. Hash password & build user payload
   bcrypt.hash(password, 8, async (err, hash) => {
     if (err) {
-      return res.status(500).json({ msg: "Error Hashing Password:", err });
+      console.error('Error hashing password:', err);
+      return res.status(500).json({ msg: "Error Hashing Password", error: err });
     }
 
     try {
@@ -54,6 +56,10 @@ const verify = async (req, res) => {
       const created = await userModel.create(newUserData);
 
       // 5. Sign JWT
+      if (!process.env.JWT_SECRET) {
+        console.error('JWT_SECRET is not set in environment variables!');
+        return res.status(500).json({ msg: 'Internal Server Error: JWT_SECRET not set in backend.' });
+      }
       const token = jwt.sign(
         { email, rank, userID: created._id },
         process.env.JWT_SECRET,
@@ -70,6 +76,7 @@ const verify = async (req, res) => {
 
       return res.status(201).json({ msg: successMsg, token });
     } catch (createErr) {
+      console.error('User creation or JWT error:', createErr);
       // Duplicate email
       if (createErr.code === 11000 && createErr.keyPattern?.email) {
         return res.status(409).json({ msg: "Email already exists." });
