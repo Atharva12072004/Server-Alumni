@@ -15,35 +15,40 @@ const imageRoute = require('./routes/imageRoute');
 
 // Initialize express app
 const app = express();
-app.use(express.json());
 
 // ==============================
 // ✅ CORS Configuration
 // ==============================
-const frontendUrl = process.env.FRONTENDURI;
 const allowedOrigins = [
-  frontendUrl,
+  process.env.FRONTENDURI,
   'http://localhost:3000',
   'http://localhost:5173',
   'http://localhost:8080',
   'http://127.0.0.1:3000',
   'http://127.0.0.1:5173',
   'http://127.0.0.1:8080',
-  'https://acpcealumni.netlify.app'
+  'https://acpcealumni.netlify.app' // ✅ Netlify domain
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin like curl, postman
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
+
+// ✅ Handle Preflight OPTIONS request globally
+app.options('*', cors());
+
+// ==============================
+// ✅ JSON Parser Middleware
+// ==============================
+app.use(express.json());
 
 // ==============================
 // ✅ Static Files Setup
