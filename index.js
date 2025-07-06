@@ -21,11 +21,10 @@ const app = express();
 // ==============================
 const allowedOrigins = [
   process.env.FRONTENDURI,
-  //'http://localhost:3000',
-  'https://acpcealumni.netlify.app' // ✅ Netlify domain
+  'https://acpcealumni.netlify.app'
 ];
 
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -35,10 +34,10 @@ app.use(cors({
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
-}));
+};
 
-// ✅ Handle Preflight OPTIONS request globally
-app.options('*', cors());
+app.use(cors(corsOptions)); // ✅ Apply proper CORS
+// ❌ REMOVE this → app.options('*', cors()); // This breaks preflight
 
 // ==============================
 // ✅ JSON Parser Middleware
